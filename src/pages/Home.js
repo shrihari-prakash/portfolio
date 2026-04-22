@@ -133,15 +133,15 @@ export default function Home() {
       <div className="code-container">
         <div className="code-line">
           <span className="line-number">1</span>
-          <span className="comment">/**</span>
+          <span className="comment">{"/**"}</span>
         </div>
         <div className="code-line">
           <span className="line-number">2</span>
-          <span className="comment">&nbsp;* Welcome to my portfolio!</span>
+          <span className="comment">{"&nbsp;* Welcome to my portfolio!"}</span>
         </div>
         <div className="code-line">
           <span className="line-number">3</span>
-          <span className="comment">&nbsp;*/</span>
+          <span className="comment">{"&nbsp;*/"}</span>
         </div>
         <div className="code-line">
           <span className="line-number">4</span>

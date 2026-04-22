@@ -1,7 +1,6 @@
 import React from "react";
 import styled from "styled-components";
 import Theme from "../theme";
-import Me from "../assets/images/me.jpg";
 
 function calculateExperience(startDate) {
   return Math.round(
