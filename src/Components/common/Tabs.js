@@ -11,33 +11,37 @@ const TabsWrapper = styled.div`
   align-items: center;
   overflow-x: auto;
   overflow-y: hidden;
+  background-color: ${Theme.Colors.Surface};
   user-select: none;
+  border-bottom: 1px solid ${Theme.Colors.Border};
 
   .tab {
     height: 100%;
-    color: ${Theme.Colors.TextOnBackground};
-    font-size: small;
+    color: ${Theme.Colors.TextMuted};
+    font-size: 13px;
     display: inline-flex;
     align-items: center;
     justify-content: center;
     padding: 0 18px;
     cursor: pointer;
-    border-right: 1px solid ${Theme.Colors.Border};
+    border-right: 1px solid #1f1f1f;
+    border-top: 2px solid transparent; /* placeholder for active state */
 
     :hover {
-      background-color: ${Theme.Colors.Surface};
+      color: ${Theme.Colors.TextOnBackground};
     }
 
     .file-icon {
       width: 18px;
-      margin-right: 4px;
+      margin-right: 6px;
     }
   }
 
   .active {
-    border-top: 1px solid ${Theme.Colors.Accent};
-    background-color: ${Theme.Colors.Surface};
-    height: calc(100% - 1px);
+    border-top: 2px solid ${Theme.Colors.Accent};
+    background-color: ${Theme.Colors.Background};
+    color: ${Theme.Colors.TextOnBackground};
+    height: 100%;
   }
 `;
 

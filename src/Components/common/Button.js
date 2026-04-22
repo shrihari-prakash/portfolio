@@ -4,17 +4,18 @@ import Theme from "../../theme";
 
 const ButtonWrapper = styled.div`
   button {
-    background-color: ${Theme.Colors.Accent2};
+    background-color: ${Theme.Colors.Accent};
     color: white;
-    padding: 6px 24px;
+    padding: 6px 18px;
     border: 1px solid transparent;
-    font-size: small;
+    font-size: 13px;
     cursor: pointer;
-    border-radius: 0px;
+    border-radius: 2px;
     white-space: nowrap;
+    transition: background-color 0.1s ease;
   }
-  :hover {
-    filter: brightness(1.2);
+  button:hover {
+    background-color: ${Theme.Colors.Accent2};
   }
 `;
 

@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import Theme from "../theme";
-import Roamcalm from "../assets/images/screenshots/roamcalm.png";
+import Roamcalm from "../assets/images/screenshots/roamcalm.webp";
 import CommaMessenger from "../assets/images/screenshots/comma-messenger.png";
 import RayAppRelease from "../assets/images/screenshots/rayapp-release-hub.png";
 import EventFactory from "../assets/images/screenshots/event-factory.png";
@@ -15,132 +15,117 @@ const ProjectWrapper = styled.div`
   width: 100%;
   overflow: auto;
   cursor: default;
+  padding: 16px;
+  box-sizing: border-box;
+
+  .header {
+    margin-bottom: 24px;
+    padding-bottom: 12px;
+    color: ${Theme.Colors.TextOnBackground};
+    font-size: 20px;
+    font-weight: 400;
+  }
 
   .cards {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
-    margin: 4rem 5vw;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
     padding: 0;
+    margin: 0;
     list-style-type: none;
-
-    ${Theme.Media.Portrait}, ${Theme.Media.Mobile} {
-      margin: 1rem 2vw;
-    }
+    max-width: 900px;
   }
 
   .card {
-    position: relative;
-    display: block;
-    height: 100%;
-    border-radius: 0;
-    overflow: hidden;
+    display: flex;
+    align-items: flex-start;
+    padding: 16px;
+    border-radius: 6px;
+    background-color: ${Theme.Colors.Background};
     text-decoration: none;
-    border: 1px solid ${Theme.Colors.Border};
+    transition: background-color 0.1s ease;
+    border: 1px solid transparent;
+
+    &:hover {
+      border: 1px solid ${Theme.Colors.Border};
+    }
+
+    ${Theme.Media.Portrait}, ${Theme.Media.Mobile} {
+      flex-direction: column;
+    }
   }
 
   .card__image {
-    width: 100%;
-    height: 100%;
+    width: 240px;
+    height: 175px;
     object-fit: cover;
-  }
-
-  .card__overlay {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    z-index: 1;
-    border-radius: 0;
-    background-color: ${Theme.Colors.Background};
-    transform: translateY(100%);
-    transition: 0.2s ease-in-out;
+    border-radius: 8px;
+    margin-right: 24px;
+    flex-shrink: 0;
+    border: 1px solid ${Theme.Colors.Border};
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 
     ${Theme.Media.Portrait}, ${Theme.Media.Mobile} {
-      transition: none;
+      width: 100%;
+      height: auto;
+      aspect-ratio: 4 / 3;
+      margin-bottom: 16px;
+      margin-right: 0;
     }
   }
 
-  .card:hover .card__overlay {
-    transform: translateY(0);
+  .card__content {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    min-width: 0; /* allows text truncation */
   }
 
-  .card__header {
-    position: relative;
+  .card__header-group {
     display: flex;
     align-items: center;
-    gap: 2em;
-    padding: 0.5em;
-    border-radius: 0 0 0 0;
-    background-color: ${Theme.Colors.Background}D9;
-    transform: translateY(-100%);
-    transition: 0.2s ease-in-out;
-
-    ${Theme.Media.Portrait}, ${Theme.Media.Mobile} {
-      transition: none;
-    }
-  }
-
-  .card__arc {
-    width: 80px;
-    height: 80px;
-    position: absolute;
-    bottom: 100%;
-    right: 0;
-    z-index: 1;
-  }
-
-  /* .card__arc path {
-    fill: ${Theme.Colors.Background}D9;
-    d: path("M 40 80 c 22 0 40 -22 40 -40 v 40 Z");
-  } */
-
-  .card:hover .card__header {
-    transform: translateY(0);
-  }
-
-  .card__thumb {
-    flex-shrink: 0;
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
+    gap: 12px;
   }
 
   .card__title {
-    font-size: 1em;
-    margin: 0 0 0.3em;
-    color: ${Theme.Colors.TextOnBackground};
+    font-size: 16px;
+    font-weight: 600;
+    margin: 0;
+    color: ${Theme.Colors.Accent};
+    font-family: inherit;
   }
 
-  .card__tagline {
-    display: block;
-    margin: 1em 0;
-    font-family: "DM Sans";
-    font-size: 0.8em;
-    color: ${Theme.Colors.TextOnBackground};
-  }
-
-  .card__status {
-    font-size: 0.8em;
-    color: ${Theme.Colors.TextOnBackground};
+  .card__publisher {
+    font-size: 12px;
+    color: ${Theme.Colors.TextMuted};
   }
 
   .card__description {
-    padding: 0 2em 0.7em;
-    margin: 0;
+    margin: 8px 0;
     color: ${Theme.Colors.TextOnBackground};
-    font-family: "DM Sans";
-    font-size: small;
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
+    font-size: 13px;
+    line-height: 1.4;
+    text-align: left;
+
+    ${Theme.Media.Portrait}, ${Theme.Media.Mobile} {
+      white-space: normal;
+    }
   }
 
   .card__actions {
-    padding-bottom: 0.7em;
     display: flex;
     align-items: center;
-    justify-content: space-around;
+    gap: 8px;
+    margin-top: auto;
+  }
+
+  .card__tag {
+    font-size: 11px;
+    color: ${Theme.Colors.TextOnBackground};
+    background-color: ${Theme.Colors.Border};
+    padding: 2px 6px;
+    border-radius: 4px;
+    margin-right: 4px;
   }
 `;
 
@@ -149,7 +134,7 @@ const projectList = [
     name: "Roamcalm",
     thumbnail: Roamcalm,
     description:
-      "Plan trips, save documents and split expenses in one place! 🌍",
+      "Forward your booking confirmations and watch them transform into organized, offline-ready travel itineraries. Chat with our AI travel planner to create trips naturally, collaborate with companions, track expenses, and access everything offline. 🌍",
     tags: ["node", "react", "mongodb", "redis", "typescript"],
     demo: "https://roamcalm.com",
   },
@@ -157,9 +142,9 @@ const projectList = [
     name: "Liquid",
     thumbnail: NodeOAuth,
     description:
-      "Seamless authentication and user management APIs for your projects based on TypeScript, MongoDB and Redis. ✨",
+      "Liquid is a Docker-based open-source authentication server that supercharges your product development by offering out of the box social APIs for features like follow-unfollow, blocking, and banning so that you can focus on just your application logic.",
     tags: ["NodeOAuth", "node", "mongodb"],
-    source_code: "https://github.com/shrihari-prakash/liquid"
+    source_code: "https://github.com/shrihari-prakash/liquid",
   },
   {
     name: "Nitrogen",
@@ -167,13 +152,13 @@ const projectList = [
     description:
       "Beautiful user management admin panel for your Liquid instances. ⚙️",
     tags: ["Nitrogen", "node", "mongodb"],
-    source_code: "https://github.com/shrihari-prakash/liquid"
+    source_code: "https://github.com/shrihari-prakash/liquid",
   },
   {
     name: "RayApp Release",
     thumbnail: RayAppRelease,
     description:
-      "An open music release platform for independent artists to get their songs into major music platforms like Spotify and Apple Music.",
+      "An open music release platform for independent artists to get their songs into major music platforms like Spotify.",
     tags: ["react", "node", "mongodb", "typescript", "ant-design"],
     demo: "https://rayapprelease.com",
   },
@@ -181,8 +166,8 @@ const projectList = [
     name: "Comma Messenger",
     thumbnail: CommaMessenger,
     description:
-      "Open source text messenger based on React, Express, MongoDB, and socket.io with encryption and push notifications support",
-    tags: ["react", "node", "mongodb", "expressjs", "socket.io"],
+      "Open source text messenger with encryption and push notifications support.",
+    tags: ["react", "node", "socket.io"],
     source_code: "https://github.com/Shrihari-Prakash/comma-messenger-backend",
     demo: "https://commamessenger.netlify.app",
   },
@@ -190,8 +175,8 @@ const projectList = [
     name: "Telmi.AI",
     thumbnail: TelmiAI,
     description:
-      "An intelligent virtual e-detailing sales rep designed allows pharma companies to interact with doctors who are too busy to meet human sales reps.",
-    tags: ["javascript", "node", "php", "mysql", "react"],
+      "An intelligent virtual e-detailing sales rep designed allows pharma companies to interact with doctors.",
+    tags: ["javascript", "node", "mysql", "react"],
   },
   {
     name: "Event Factory",
@@ -208,25 +193,20 @@ export default function Project() {
   return (
     <ProjectWrapper>
       <ul className="cards">
-        {projectList.map((project) => (
-          <li>
-            {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-            <a href="#" className="card">
-              <img src={project.thumbnail} className="card__image" alt="" />
-              <div className="card__overlay">
-                <div className="card__header">
-                  <svg className="card__arc" xmlns="http://www.w3.org/2000/svg">
-                    <path />
-                  </svg>
-                  <div className="card__header-text">
-                    <h3 className="card__title">{project.name}</h3>
-                  </div>
+        {projectList.map((project, idx) => (
+          <li key={idx}>
+            <div className="card">
+              <img src={project.thumbnail} className="card__image" alt="icon" />
+              <div className="card__content">
+                <div className="card__header-group">
+                  <h3 className="card__title">{project.name}</h3>
+                  <span className="card__publisher">Shrihari Prakash</span>
                 </div>
                 <p className="card__description">{project.description}</p>
                 <div className="card__actions">
                   {project.demo && (
                     <Button onClick={() => window.open(project.demo, "_blank")}>
-                      Live
+                      Open Project
                     </Button>
                   )}
                   {project.source_code && (
@@ -236,9 +216,16 @@ export default function Project() {
                       Source
                     </Button>
                   )}
+                  <div style={{ marginLeft: "8px" }}>
+                    {project.tags.slice(0, 3).map((tag) => (
+                      <span key={tag} className="card__tag">
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
                 </div>
               </div>
-            </a>
+            </div>
           </li>
         ))}
       </ul>

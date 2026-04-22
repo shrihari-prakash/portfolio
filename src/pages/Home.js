@@ -1,113 +1,107 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import GitHubCalendar from 'react-github-calendar';
-import styled from "styled-components";
+import GitHubCalendar from "react-github-calendar";
+import styled, { keyframes } from "styled-components";
 import Button from "../Components/common/Button";
 import { routes } from "../routes";
 import Theme from "../theme";
-import BgImage from "../assets/images/home-bg.svg";
 import Memoji from "../assets/images/memoji.png";
+
+const blink = keyframes`
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+`;
 
 const HomeWrapper = styled.div`
   height: 100%;
   width: 100%;
   color: ${Theme.Colors.TextOnBackground};
   display: flex;
-  align-items: center;
-  justify-content: center;
   flex-direction: column;
-  font-size: large;
-  position: relative;
-  overflow: hidden;
-  user-select: none;
+  padding: 32px;
+  box-sizing: border-box;
+  overflow: auto;
+  font-family: inherit;
+  font-size: 15px;
+  text-align: left;
 
-  .container {
-    position: absolute;
-    transform: translate(-50%, -50%);
-    top: 50%;
-    left: 50%;
-    z-index: 5;
-
-    .action-buttons {
-      display: flex;
-      width: 100%;
-      margin: 32px 0;
-
-      div {
-        margin-right: 24px;
-      }
-    }
+  ${Theme.Media.Portrait}, ${Theme.Media.Mobile} {
+    padding: 16px;
   }
 
-  .greeting-container {
+  .code-container {
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  .code-line {
     display: flex;
     align-items: center;
+    line-height: 1.6;
 
-    .memoji {
-      padding-right: 8px;
-    }
-
-    ${Theme.Media.Portrait}, ${Theme.Media.Mobile} {
-      align-items: start;
-      flex-direction: column;
+    .line-number {
+      width: 2.5rem;
+      text-align: right;
+      margin-right: 1.5rem;
+      color: ${Theme.Colors.TextMuted};
+      user-select: none;
     }
   }
 
-  .title-main {
-    margin: 0;
-    position: relative;
-    white-space: nowrap;
+  .memoji-container {
+    padding: 16px 0 16px 4rem;
+    img {
+      height: 96px;
+    }
+  }
+
+  .keyword {
+    color: ${Theme.Colors.Keyword};
+  }
+  .function {
+    color: ${Theme.Colors.Function};
+  }
+  .property {
+    color: ${Theme.Colors.Property};
+  }
+  .string {
+    color: ${Theme.Colors.String};
+  }
+  .punctuation {
+    color: ${Theme.Colors.TextOnBackground};
+  }
+  .comment {
+    color: ${Theme.Colors.TextMuted};
+    font-style: italic;
+  }
+
+  .cursor {
+    display: inline-block;
+    width: 8px;
+    height: 1.2em;
+    background-color: ${Theme.Colors.TextOnBackground};
+    vertical-align: middle;
+    animation: ${blink} 1s step-end infinite;
+    margin-left: 4px;
+  }
+
+  .widgets {
+    margin-top: 32px;
+    padding-left: 4rem;
+
+    ${Theme.Media.Portrait}, ${Theme.Media.Mobile} {
+      padding-left: 0;
+      margin-top: 16px;
+      margin-bottom: 24px;
+    }
+  }
+
+  .action-buttons {
     display: flex;
-    transition: all 0.3s ease-in-out;
-  }
-
-  .subtitle, .description {
-    font-size: 24px;
-    font-weight: 500;
-    margin: 0;
-    letter-spacing: 2px;
-    text-align: left;
-    text-transform: uppercase;
-    font-family: "DM Sans", serif;
-    transition: all 0.3s ease-in-out;
-
-    ${Theme.Media.Portrait}, ${Theme.Media.Mobile} {
-      font-size: 18px;
-    }
-  }
-
-  .subtitle:hover, .description:hover, .title-main:hover {
-    
-  }
-
-  .description {
-    font-size: 14px;
-    line-height: 14px;
-    font-weight: lighter;
-    text-transform: uppercase;
-    opacity: 0.5;
-  }
-
-  h1 {
-    font-family: "DM Sans", serif;
-    font-size: 34px;
-    font-weight: lighter;
-    text-transform: uppercase;
-    margin: 0;
-
-    ${Theme.Media.Portrait}, ${Theme.Media.Mobile} {
-      font-size: 30px;
-    }
-  }
-
-  .texture {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    opacity: 0.1;
-    background-image: url(${BgImage});
+    gap: 16px;
+    margin-top: 24px;
   }
 
   .react-activity-calendar {
@@ -125,42 +119,84 @@ const HomeWrapper = styled.div`
 `;
 
 const theme = {
-  level0: Theme.Colors.Background + "40",
-  level1: '#0e4429',
-  level2: '#006d32',
-  level3: '#26a641',
-  level4: '#39d353',
+  level0: Theme.Colors.Background,
+  level1: "#0e4429",
+  level2: "#006d32",
+  level3: "#26a641",
+  level4: "#39d353",
 };
 
 export default function Home() {
   const navigate = useNavigate();
   return (
     <HomeWrapper>
-      <div class="container">
-        <div class="greeting-container">
-          <img alt="memoji" className="memoji" height="96px" src={Memoji}></img>
-          <div>
-            <p class="subtitle">Hello, I'm</p>
-            <div class="title-main" data-text="SHRIHARI PRAKASAM">
-              <h1><b>Shrihari</b> Prakasam</h1>
-            </div>
-            <p class="description">Fullstack Engineer</p>
+      <div className="code-container">
+        <div className="code-line">
+          <span className="line-number">1</span>
+          <span className="comment">/**</span>
+        </div>
+        <div className="code-line">
+          <span className="line-number">2</span>
+          <span className="comment">&nbsp;* Welcome to my portfolio!</span>
+        </div>
+        <div className="code-line">
+          <span className="line-number">3</span>
+          <span className="comment">&nbsp;*/</span>
+        </div>
+        <div className="code-line">
+          <span className="line-number">4</span>
+        </div>
+        <div className="memoji-container">
+          <img alt="memoji" src={Memoji} />
+        </div>
+        <div className="code-line">
+          <span className="line-number">5</span>
+          <span className="keyword">const</span>&nbsp;
+          <span className="function">developer</span>&nbsp;
+          <span className="punctuation">=&nbsp;{"{"}</span>
+        </div>
+        <div className="code-line">
+          <span className="line-number">6</span>
+          &nbsp;&nbsp;&nbsp;&nbsp;<span className="property">name</span>
+          <span className="punctuation">:&nbsp;</span>
+          <span className="string">"Shrihari Prakasam"</span>
+          <span className="punctuation">,</span>
+        </div>
+        <div className="code-line">
+          <span className="line-number">7</span>
+          &nbsp;&nbsp;&nbsp;&nbsp;<span className="property">role</span>
+          <span className="punctuation">:&nbsp;</span>
+          <span className="string">"Fullstack Engineer"</span>
+          <span className="punctuation">,</span>
+        </div>
+        <div className="code-line">
+          <span className="line-number">8</span>
+          &nbsp;&nbsp;&nbsp;&nbsp;<span className="property">passion</span>
+          <span className="punctuation">:&nbsp;</span>
+          <span className="string">
+            "Building scalable microservices & native-like web apps!"
+          </span>
+        </div>
+        <div className="code-line">
+          <span className="line-number">9</span>
+          <span className="punctuation">{"};"}</span>
+          <span className="cursor"></span>
+        </div>
+
+        <div className="widgets">
+          <GitHubCalendar
+            username="shrihari-prakash"
+            theme={theme}
+            hideColorLegend
+            hideMonthLabels
+            blockRadius={2}
+          />
+          <div className="action-buttons">
+            <Button onClick={() => navigate(routes.ABOUT)}>About Me</Button>
+            <Button onClick={() => navigate(routes.PROJECTS)}>Projects</Button>
           </div>
         </div>
-        <GitHubCalendar
-          username="shrihari-prakash"
-          theme={theme}
-          hideColorLegend
-          hideMonthLabels
-          blockRadius={10}
-        />
-        <div className="action-buttons">
-          <Button onClick={() => navigate(routes.ABOUT)}>About Me</Button>
-          <Button onClick={() => navigate(routes.PROJECTS)}>Projects</Button>
-        </div>
       </div>
-      <div className="texture"></div>
-      {/* <div class="scanlines"></div> */}
     </HomeWrapper>
   );
 }

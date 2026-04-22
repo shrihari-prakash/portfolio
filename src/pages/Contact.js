@@ -8,80 +8,81 @@ const ContactWrapper = styled.div`
   color: ${Theme.Colors.TextOnBackground};
   text-align: left;
   cursor: default;
+  font-family: inherit;
 
   ${Theme.Media.Mobile}, ${Theme.Media.Portrait} {
-    padding: 4px;
+    padding: 8px;
   }
 
   .code-line {
+    display: flex;
+    align-items: center;
+    line-height: 1.6;
+    
     ::before {
       content: counter(line);
       counter-increment: line;
-      margin-right: 1rem;
-      color: grey;
+      margin-right: 1.5rem;
+      width: 1.5rem;
+      text-align: right;
+      color: ${Theme.Colors.TextMuted};
+      user-select: none;
     }
 
     a {
-      color: ${Theme.Colors.Accent};
+      color: ${Theme.Colors.String};
       text-decoration: none;
+      
+      &:hover {
+        text-decoration: underline;
+      }
     }
   }
+
+  .keyword { color: ${Theme.Colors.Keyword}; }
+  .function { color: ${Theme.Colors.Function}; }
+  .property { color: ${Theme.Colors.Property}; }
+  .punctuation { color: ${Theme.Colors.TextOnBackground}; }
+  .comment { color: ${Theme.Colors.TextMuted}; font-style: italic; }
 `;
 
 export default function Contact() {
+  const socials = [
+    { key: "website", link: "https://shrihariprakasam.in", text: "shrihariprakasam.in" },
+    { key: "email", link: "mailto:shrihariprakasam@gmail.com", text: "shrihariprakasam@gmail.com" },
+    { key: "github", link: "https://github.com/shrihari-prakash", text: "shrihari-prakash" },
+    { key: "linkedin", link: "https://www.linkedin.com/in/shrihari-prakasam/", text: "shrihari-prakasam" },
+    { key: "medium", link: "https://shrihariprakash.medium.com", text: "shrihariprakash.medium.com" },
+  ];
+
   return (
     <ContactWrapper>
-      React out to me
-      <br></br>
-      <br></br>
-      <div className="code-line">{"{"}</div>
+      <div className="code-line comment">// Reach out to me</div>
+      <div className="code-line">&nbsp;</div>
       <div className="code-line">
-        &nbsp;&nbsp;&nbsp;Website:{" "}
-        <a
-          href="https://shrihariprakasam.in"
-          rel="noreferrer"
-          target="_blank"
-        >
-          shrihariprakasam.in
-        </a>
+        <span className="keyword">export&nbsp;const</span>&nbsp;
+        <span className="function">Socials</span>&nbsp;
+        <span className="punctuation">=&nbsp;{"{"}</span>
       </div>
+      
+      {socials.map((social) => (
+        <div key={social.key} className="code-line">
+          &nbsp;&nbsp;&nbsp;&nbsp;
+          <span className="property">{social.key}</span>
+          <span className="punctuation">:&nbsp;</span>
+          <span className="punctuation">"</span>
+          <a href={social.link} rel="noreferrer" target="_blank">
+            {social.text}
+          </a>
+          <span className="punctuation">",</span>
+        </div>
+      ))}
+      
       <div className="code-line">
-        &nbsp;&nbsp;&nbsp;E-Mail:{" "}
-        <a href="mailto:shrihariprakasam@gmail.com">
-          shrihariprakasam@gmail.com
-        </a>
+        <span className="punctuation">{"};"}</span>
       </div>
-      <div className="code-line">
-        &nbsp;&nbsp;&nbsp;GitHub:{" "}
-        <a
-          href="https://github.com/shrihari-prakash"
-          rel="noreferrer"
-          target="_blank"
-        >
-          shrihari-prakash
-        </a>
-      </div>
-      <div className="code-line">
-        &nbsp;&nbsp;&nbsp;LinkedIn:{" "}
-        <a
-          href="https://www.linkedin.com/in/shrihari-prakasam/"
-          rel="noreferrer"
-          target="_blank"
-        >
-          shrihari-prakasam
-        </a>
-      </div>
-      <div className="code-line">
-        &nbsp;&nbsp;&nbsp;Medium:{" "}
-        <a
-          href="https://shrihariprakash.medium.com"
-          rel="noreferrer"
-          target="_blank"
-        >
-          shrihariprakash.medium.com
-        </a>
-      </div>
-      <div className="code-line">{"}"}</div>
+      <div className="code-line">&nbsp;</div>
+      <div className="code-line comment">// Waiting for your message!</div>
     </ContactWrapper>
   );
 }

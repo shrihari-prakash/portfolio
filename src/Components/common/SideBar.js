@@ -15,7 +15,7 @@ const SideBarWrapper = styled.div`
   height: 100%;
   width: 45px;
   background-color: ${Theme.Colors.Surface};
-  border-right: 1px solid ${Theme.Colors.Border};
+  border-right: 1px solid #1f1f1f;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -28,21 +28,24 @@ const SideBarWrapper = styled.div`
     .icon {
       height: 50px;
       width: 100%;
-      opacity: 0.4;
+      opacity: 0.6;
       cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
       font-size: x-large;
-      color: ${Theme.Colors.TextOnBackground};
+      color: ${Theme.Colors.TextMuted};
+      border-left: 2px solid transparent;
 
       :hover {
+        color: ${Theme.Colors.TextOnBackground};
         opacity: 1;
       }
     }
 
     .active {
       border-left: 2px solid ${Theme.Colors.Accent};
+      color: ${Theme.Colors.TextOnBackground};
       opacity: 1;
     }
   }

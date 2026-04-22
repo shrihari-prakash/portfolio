@@ -18,6 +18,7 @@ const StatusBarWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   position: relative;
+  border-top: 1px solid ${Theme.Colors.Border};
 
   .left,
   .right {
@@ -89,7 +90,8 @@ export default function StatusBar() {
           className="status-btn"
           href="https://github.com/Shrihari-Prakash/portfolio"
           target="_blank"
-          rel="noreferrer">
+          rel="noreferrer"
+        >
           <BranchesOutlined /> main
         </a>
         <div className="status-btn hidden-mobile">

@@ -14,6 +14,7 @@ const BrowserWrapper = styled.div`
   user-select: none;
   position: relative;
   overflow-x: hidden;
+  background-color: ${Theme.Colors.Background};
 
   .heading,
   .list-project {
