@@ -124,7 +124,7 @@ const AboutWrapper = styled.div`
     gap: 8px;
     background-color: ${Theme.Colors.Card};
     border: 1px solid ${Theme.Colors.Border};
-    padding: 8px 16px;
+    padding: 4px 8px;
     border-radius: 6px;
     font-size: 14px;
     color: ${Theme.Colors.TextOnBackground};
